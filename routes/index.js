@@ -25,9 +25,9 @@ router.post('/', function(req, res, next) {
 
         zip.pipe(res);
         submissions_retriever.getSubmissions(username, token);
-        setTimeout(function(){
+        /*setTimeout(function(){
             zip.finalize();
-        }, 20000);
+        }, 20000);*/
     });
 });
 

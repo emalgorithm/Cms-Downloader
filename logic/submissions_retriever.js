@@ -11,9 +11,10 @@ var username = '';
 var token = '';
 
 var size = 0;
+var counter = 0;
 
 
-var getDigestRequest = function(taskName){
+var getDigestRequest = function(taskName, index){
     var getDigestURL = "http://cms.di.unipi.it/submission";
     var getDigestParams = {
         json: {
@@ -32,7 +33,7 @@ var getDigestRequest = function(taskName){
                 var digest = submission["files"][0]["digest"];
                 var fileName = taskName + ".cpp";
                 var downloadURL = "http://cms.di.unipi.it/files/" + digest + "/" + fileName;
-                downloadRequest(downloadURL, fileName);
+                downloadRequest(downloadURL, fileName, index);
             }
         }
     );
@@ -43,6 +44,12 @@ var downloadRequest = function(downloadURL, fileName){
         downloadURL,
         function(error, response, body){
             zip.append(body, {name: fileName});
+            counter++;
+            console.log(fileName + " " + counter);
+            if(counter == size) {
+                console.log("Zip finalized");
+                zip.finalize();
+            }
         }
     );
 }
@@ -62,11 +69,12 @@ var getNamesListRequest = function() {
         function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 size = body["scores"].length;
-                console.log(size);
-                body["scores"].forEach(function(taskObj, index) {
+                body["scores"].forEach(function(taskObj) {
                     var taskName = taskObj["name"];
                     getDigestRequest(taskName);
                 });
+                console.log("ciao "+ size);
+                //zip.finalize();
             }
         }
     );
