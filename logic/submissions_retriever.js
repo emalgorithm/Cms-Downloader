@@ -10,8 +10,8 @@ var zip = module.exports.zip = archiver('zip');
 var username = '';
 var token = '';
 
-var size = 0;
-var counter = 0;
+var size;
+var counter;
 
 
 var getDigestRequest = function(taskName, index){
@@ -74,7 +74,6 @@ var getNamesListRequest = function() {
                     getDigestRequest(taskName);
                 });
                 console.log("ciao "+ size);
-                //zip.finalize();
             }
         }
     );
@@ -83,5 +82,7 @@ var getNamesListRequest = function() {
 module.exports.getSubmissions = function(usernameTemp, tokenTemp) {
     username = usernameTemp;
     token = tokenTemp;
+    size = 0;
+    counter = 0;
     getNamesListRequest();
 };
