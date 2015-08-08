@@ -20,7 +20,13 @@ var getToken = module.exports.getToken = function(username, password, cb){
         params,
         function(err, res, body){
             if(!err && res.statusCode == 200){
-                var token = body['token'];
+                var token = '';
+                if(body.hasOwnProperty('error')){
+                    console.log("Errorrrrrrrrr");
+                }
+                else {
+                    token = body['token'];
+                }
                 cb(token);
             }
             else if(err)
