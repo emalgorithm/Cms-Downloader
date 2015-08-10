@@ -3,7 +3,6 @@ var logic = require('../logic');
 var submissions_retriever = logic.submissions_retriever;
 var token_retriever = logic.token_retriever;
 
-
 var router = express.Router();
 
 
@@ -12,6 +11,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'CMS Downloader' });
 });
 
+//Post request(When the download button is pressed)
 router.post('/', function(req, res, next) {
     var zip = submissions_retriever.zip;
     var username = req.body.username;
@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
 
     token_retriever.getToken(username, password, function(tokenTemp){
         var token = tokenTemp;
-        if(token == ''){
+        if(token == '') {
             //Invalid username and/or password
             res.redirect('/');
         }
