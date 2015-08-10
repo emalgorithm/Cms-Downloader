@@ -3,10 +3,8 @@
  */
 
 var request = require("request");
-var archiver = require('archiver');
 
-var zip = module.exports.zip = archiver('zip');
-
+var zip;
 var username = '';
 var token = '';
 var size = 0;
@@ -78,9 +76,10 @@ var getNamesListRequest = function() {
     );
 }
 
-module.exports.getSubmissions = function(usernameTemp, tokenTemp) {
+module.exports.getSubmissions = function(usernameTemp, tokenTemp, zipTemp) {
     username = usernameTemp;
     token = tokenTemp;
+    zip = zipTemp;
     counter = 0;
     getNamesListRequest();
 };

@@ -1,5 +1,7 @@
 var express = require('express');
 var logic = require('../logic');
+var archiver = require('archiver');
+
 var submissions_retriever = logic.submissions_retriever;
 var token_retriever = logic.token_retriever;
 
@@ -13,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 //Post request(When the download button is pressed)
 router.post('/', function(req, res, next) {
-    var zip = submissions_retriever.zip;
+    var zip = archiver('zip');
     var username = req.body.username;
     var password = req.body.password;
 
@@ -21,7 +23,8 @@ router.post('/', function(req, res, next) {
         var token = tokenTemp;
         if(token == '') {
             //Invalid username and/or password
-            res.redirect('/');
+            //res.redirect('/');
+            $('p').append('Wrong Username and/or Password!');
         }
         else {
             res.writeHead(200, {
@@ -30,7 +33,7 @@ router.post('/', function(req, res, next) {
             });
 
             zip.pipe(res);
-            submissions_retriever.getSubmissions(username, token);
+            submissions_retriever.getSubmissions(username, token, zip);
         }
     });
 });
