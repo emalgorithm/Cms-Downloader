@@ -13,9 +13,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'CMS Downloader' });
 });
 
-//Post request(When the download button is pressed)
-router.post('/', function(req, res, next) {
-    var zip = archiver('zip');
+router.post('/get_token', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
 
@@ -23,19 +21,36 @@ router.post('/', function(req, res, next) {
         var token = tokenTemp;
         if(token == '') {
             //Invalid username and/or password
-            //res.redirect('/');
-            $('p').append('Wrong Username and/or Password!');
+            res.statusCode = 401;
         }
         else {
-            res.writeHead(200, {
-                'Content-Type': 'application/zip',
-                'Content-disposition': 'attachment; filename=downloaded_files.zip'
+            console.log('token retrieved: ' + token);
+            res.send({
+                token : token
             });
-
-            zip.pipe(res);
-            submissions_retriever.getSubmissions(username, token, zip);
         }
+        res.end();
     });
 });
+
+//Post request(When the download button is pressed)
+router.post('/download', function(req, res, next) {
+    console.log('Requested post download');
+    var zip = archiver('zip');
+    var username = req.body.hidUsername;
+    var token = req.body.hidToken;
+    console.log('Username:  ' + username + ',   token:' + token);
+
+    res.writeHead(200, {
+        'Content-Type': 'application/zip',
+        'Content-disposition': 'attachment; filename=downloaded_files.zip'
+    });
+
+    zip.pipe(res);
+    submissions_retriever.getSubmissions(username, token, zip);
+
+});
+
+
 
 module.exports = router;

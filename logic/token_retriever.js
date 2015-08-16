@@ -22,7 +22,7 @@ var getToken = module.exports.getToken = function(username, password, cb){
             if(!err && res.statusCode == 200){
                 var token = '';
                 if(body.hasOwnProperty('error')){
-                    console.log("Errorrrrrrrrr");
+                    console.log("Token not retrieved");
                 }
                 else {
                     token = body['token'];

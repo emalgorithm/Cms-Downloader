@@ -5,10 +5,16 @@ block content
   p Scarica qui tutte le tue sottoposizioni sulla piattaforma per il training italiano delle olimpiadi di Informatica CMS.unipi
   br
   p Inserisci l'Username e la password che usi su http://cms.di.unipi.it/ e clicca su download per scaricarle!
+  div(class='error')
 
 
-    div.loginform
-      form(action='/',method='post')
-        input(type="text" name="username" id ="user" placeholder="Enter Username")
-        input(type="password" name="password" id ="pass" placeholder="Enter Password")
-        input(type="submit" class="btn"   value="download")
+  div.loginform
+    form(action='javascript:void(0);' method='post')
+      input(type="text" name="username" id ="user" placeholder="Enter Username")
+      input(type="password" name="password" id ="pass" placeholder="Enter Password")
+      input(type="submit" class="btn" value="download")
+
+  form(action='/download' method='post')
+    input(type='text' name='hidUsername' id='hidUser' style='display:none')
+    input(type='text' name='hidToken' id='hidTok' style='display:none')
+    input(type='submit' id='hidButt' style='display:none')
