@@ -70,7 +70,7 @@ var getNamesListRequest = function() {
                     var taskName = taskObj["name"];
                     getDigestRequest(taskName);
                 });
-                console.log("ciao "+ size);
+                console.log("Number of files: "+ size);
             }
         }
     );

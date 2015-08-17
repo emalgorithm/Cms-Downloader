@@ -13,6 +13,10 @@ h1 {
   font: 35px "Lucida Grande";
 }
 
+.error {
+  color: #ff0000;
+}
+
 .btn {
   color: #ffffff;
   text-align: center;
