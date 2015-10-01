@@ -1,8 +1,7 @@
 ##Description
 **CMS-Downloader** is a web app which allows you to easily download all your solutions to problems
 on the [Italian training platform](http://cms.di.unipi.it) for *IOI* (International Olympiads in Informatics).
-![Alt text](![image](https://cloud.githubusercontent.com/assets/11651747/10234412/b6254d52-6894-11e5-9b47-5346475e41d0.png))
-
+![screenshot](https://cloud.githubusercontent.com/assets/11651747/10234647/5291c606-6896-11e5-857b-b9395e66ca21.png)
 ##Technical details
 **CMS-Downloader** is written using the *NodeJs* web application framework *Express*.
 
