@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'CMS Downloader' });
 });
 
+//Post request which retrieves the token for a given user. It is sent after that a user press the download button
 router.post('/get_token', function(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
@@ -24,7 +25,6 @@ router.post('/get_token', function(req, res, next) {
             res.statusCode = 401;
         }
         else {
-            console.log('token retrieved: ' + token);
             res.send({
                 token : token
             });
@@ -33,13 +33,11 @@ router.post('/get_token', function(req, res, next) {
     });
 });
 
-//Post request(When the download button is pressed)
+//Post request which retrieves the files. It is sent after the token is retrieved
 router.post('/download', function(req, res, next) {
-    console.log('Requested post download');
     var zip = archiver('zip');
     var username = req.body.hidUsername;
     var token = req.body.hidToken;
-    console.log('Username:  ' + username + ',   token:' + token);
 
     res.writeHead(200, {
         'Content-Type': 'application/zip',
@@ -47,8 +45,8 @@ router.post('/download', function(req, res, next) {
     });
 
     zip.pipe(res);
-    submissions_retriever.getSubmissions(username, token, zip);
 
+    submissions_retriever.getSubmissions(username, token, zip);
 });
 
 

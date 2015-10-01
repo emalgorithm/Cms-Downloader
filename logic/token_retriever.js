@@ -4,7 +4,7 @@
 
 var request = require("request");
 
-var getToken = module.exports.getToken = function(username, password, cb){
+var getToken = function(username, password, cb){
     var url = "http://cms.di.unipi.it/user";
 
     var params = {
@@ -36,3 +36,5 @@ var getToken = module.exports.getToken = function(username, password, cb){
         }
     )
 };
+
+module.exports.getToken = getToken;
