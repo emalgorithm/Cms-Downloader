@@ -9,18 +9,14 @@ on the [Italian training platform](http://cms.di.unipi.it) for *IOI* (Internatio
 
 The structure of the important files of the project is as follows :
 
-* **CMS-Downloader**
-    * **logic**
-        * *index.js*
-        * *submissions_retriever.js*
-            * It contains the logic to retrieve the files from the online platform
-        * *token_retriever.js*
-            * It contains the logic to retrieve the *token* for a given user
-    * **public**
-        * **javascripts**
-            * *global.js*
-                * *JQuery* which sends *POST* requests from the client to the server
-    * **routes**
-        * *index.js*
-            * It handles the requests the server receives
+* **`CMS-Downloader`**
+    * **`logic`**
+        * *`index.js`*
+        * *`submissions_retriever.js`* : this file contains the logic to retrieve the files from the online platform
+        * *`token_retriever.js`* : this file contains the logic to retrieve the *token* for a given user
+    * **`public`**
+        * **`javascripts`**
+            * *`global.js`* : this file contains *JQuery* which sends *POST* requests from the client to the server
+    * **`routes`**
+        * *`index.js`* : this file handles the requests the server receives
     
