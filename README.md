@@ -6,7 +6,7 @@ on the [Italian training platform](http://cms.di.unipi.it) for *IOI* (Internatio
 ##Technical details
 **CMS-Downloader** is written using the *NodeJs* web application framework *Express*.
 
-The structure of the important files of the project is as follows:
+The structure of the important files of the project is as follows :
 
 * **CMS-Downloader**
     * **logic**
